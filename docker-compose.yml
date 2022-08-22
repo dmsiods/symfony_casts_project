@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: db_casts
+    image: mysql:8.0
+    ports:
+      - '4308:3306'
+    environment:
+      MYSQL_DATABASE: symfony_docker
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ${DB_DATA_PATH}:/var/lib/mysql:cached
+      - ${DB_DUMP_PATH}:/docker-entrypoint-initdb.d
+    networks:
+      default:
+        ipv4_address: ${CONTAINER_IP_DB}
+
+  php:
+    container_name: php_casts
+    image: php:8.0-fpm
+    build:
+      context: ./docker/php
+#      dockerfile: Dockerfile
+    ports:
+      - '8002:9000'
+    environment:
+      XDEBUG_REMOTE_PORT: ${XDEBUG_REMOTE_PORT_WEB}
+      XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
+      XDEBUG_IDEKEY:      ${XDEBUG_IDEKEY}
+#      PHP_INI_SCAN_DIR:
+      PHP_IDE_CONFIG:     serverName=${XDEBUG_SERVER_NAME}
+    volumes:
+      - './app:/var/www/html'
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      default:
+        ipv4_address: ${CONTAINER_IP_WEB}
+
+#http://localhost:8080/index.php - все работает
+  nginx:
+    container_name: nginx_casts
+    image: nginx:latest
+    ports:
+      - '8082:80'
+    volumes:
+      - './app:/var/www/html'
+      - './docker/nginx/conf.d:/etc/nginx/conf.d'
+    networks:
+      default:
+        ipv4_address: ${CONTAINER_IP_NGINX}
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${CONTAINERS_SUBNET}
