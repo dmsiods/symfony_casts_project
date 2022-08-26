@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Slug: {{ slug }}
+{% endblock %}
+
+{% block body %}
+<h2>{{ slug }}</h2>
+
+<div>
+    {{ answer }}
+</div>
+
+<h2>Elements ({{ random_array|length }})</h2>
+
+<div>
+    <ul>
+        {% for element in random_array %}
+            <li>{{ element }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
