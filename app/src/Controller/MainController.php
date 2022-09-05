@@ -119,6 +119,9 @@ class MainController extends AbstractController
      */
     public function showCustom(): Response
     {
-        return new Response('Helllo dim');
+        return $this->render('dim/showCustom.html.twig', [
+            'smth' => 'content of smth property',
+            'prop_arr' => ['aaa', 'bbb', 'ccc']
+        ]);
     }
 }

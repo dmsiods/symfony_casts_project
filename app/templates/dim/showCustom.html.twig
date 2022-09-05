@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Wel commm {{ smth }}
+{% endblock %}
+
+{% block body %}
+
+<h1>{{ smth }}</h1>
+
+<div>
+    lalalallaa
+</div>
+
+<h2>Array ({{ prop_arr|length }})</h2>
+
+<ul>
+    {% for prop in prop_arr %}
+        <li>{{ prop }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
