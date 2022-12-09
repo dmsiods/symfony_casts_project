@@ -119,6 +119,8 @@ class MainController extends AbstractController
      */
     public function showCustom(): Response
     {
+//        dd();
+
         return $this->render('dim/showCustom.html.twig', [
             'smth' => 'content of smth property',
             'prop_arr' => ['aaa', 'bbb', 'ccc']

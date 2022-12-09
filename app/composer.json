@@ -20,6 +20,7 @@
     "symfony/flex": "^1.17|^2",
     "symfony/form": "5.4.*",
     "symfony/framework-bundle": "5.4.*",
+    "symfony/monolog-bundle": "^3.0",
     "symfony/proxy-manager-bridge": "5.4.*",
     "symfony/runtime": "5.4.*",
     "symfony/twig-bundle": "5.4.*",
@@ -31,6 +32,7 @@
   "require-dev": {
     "doctrine/doctrine-fixtures-bundle": "^3.4",
     "fakerphp/faker": "^1.20",
+    "symfony/debug-bundle": "5.4.*",
     "symfony/maker-bundle": "^1.45",
     "symfony/stopwatch": "5.4.*",
     "symfony/web-profiler-bundle": "5.4.*"
