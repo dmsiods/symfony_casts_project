@@ -123,7 +123,7 @@ class MainController extends AbstractController
 
         return $this->render('dim/showCustom.html.twig', [
             'smth' => 'content of smth property',
-            'prop_arr' => ['aaa', 'bbb', 'ccc']
+            'prop_arr' => ['aaa', 'bbb', 'ccc11']
         ]);
     }
 }
