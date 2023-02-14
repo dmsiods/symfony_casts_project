@@ -29,7 +29,6 @@ services:
       XDEBUG_REMOTE_PORT: ${XDEBUG_REMOTE_PORT_WEB}
       XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
       XDEBUG_IDEKEY:      ${XDEBUG_IDEKEY}
-#      PHP_INI_SCAN_DIR:
       PHP_IDE_CONFIG:     serverName=${XDEBUG_SERVER_NAME}
     volumes:
       - './app:/var/www/html'
