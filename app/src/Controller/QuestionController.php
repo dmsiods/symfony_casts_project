@@ -11,7 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    public function homepage()
+//    /**
+//     * @Route("/")
+//     */
+    public function homepage(): Response
     {
         return new Response('homepage controller worked!');
     }
@@ -24,17 +27,19 @@ class QuestionController extends AbstractController
         return $this->render('base.html.twig', []);
     }
 
-    #[Route('/question/{slug}', 'show_question')]
-    public function show_question($slug): Response
+    /**
+     * @Route("/questions/{slug}")
+     */
+    public function show(string $slug): Response
     {
         $answer = 'Hello from question and QuestionController';
-//        return new Response(
-//            sprintf($answer . ' ' . '%s', ucwords(str_replace('_', '-', $slug), '-'))
-//        );
-        return $this->render('question/show.html.twig', [
-            'slug' => ucwords(str_replace('_', '-', $slug), '-'),
-            'random_array' => ['qwerty', 'Dima', 'blablabla'],
-            'answer' => $answer,
-        ]);
+
+        return new Response(sprintf('%s "%s"!', $answer, ucwords(str_replace('-', ' ', $slug))));
+
+//        return $this->render('question/show.html.twig', [
+//            'slug' => ucwords(str_replace('_', '-', $slug), '-'),
+//            'random_array' => ['qwerty', 'Dima', 'blablabla'],
+//            'answer' => $answer,
+//        ]);
     }
 }

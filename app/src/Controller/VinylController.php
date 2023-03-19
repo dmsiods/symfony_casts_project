@@ -12,6 +12,18 @@ class VinylController
     #[Route('/')]
     public function homepage(): Response
     {
-        return new Response('die command in homepage in vinyl controller!');
+        return new Response('homepage in vinyl controller!');
+    }
+
+    #[Route('/browse/{slug?}')]
+    public function browse(?string $slug): Response
+    {
+        if (!$slug) {
+            $title = 'All genres';
+        } else {
+            $title = 'Genre: ' . ucwords(str_replace('-', ' ', $slug));
+        }
+
+        return new Response( $title);
     }
 }
