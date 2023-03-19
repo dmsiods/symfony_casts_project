@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+//752983f315df - для composer recipes symfony/console
 class QuestionController extends AbstractController
 {
 //    /**
