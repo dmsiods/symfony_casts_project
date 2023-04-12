@@ -38,6 +38,6 @@ class VinylController extends AbstractController
             $title = 'Genre: ' . ucwords(str_replace('-', ' ', $slug));
         }
 
-        return new Response( $title);
+        return new Response($title);
     }
 }
