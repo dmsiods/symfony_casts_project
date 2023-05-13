@@ -1,0 +1,27 @@
+path[_type='country'] {
+  fill: gray;
+  /*
+  stroke: #fff;
+  stroke-width: 0
+  */
+}
+
+path[_type='country']:hover {
+  fill: blue;
+  stroke-width: 0.5
+}
+
+path[_type='route'] {
+  fill: none;
+  stroke: darkblue;
+  stroke-width: 0.5
+}
+path[_type='route']:hover {
+  stroke: yellow;
+}
+circle[_type=airport] {
+  fill: red;
+}
+circle[_type=airport]:hover {
+  fill: yellow;
+}
