@@ -19,6 +19,8 @@ class MixRepository
 
     public function findAll(): array
     {
+        dump($this->isDebug);
+
         return $this->cache->get('mixes_data', function (CacheItemInterface $cacheItem) {
             $cacheItem->expiresAfter($this->isDebug ? 5 : 60);
 
