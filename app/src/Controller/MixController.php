@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\VinylMix;
-use App\Repository\VinylMixRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -42,5 +42,24 @@ class MixController extends AbstractController
         return $this->render('mix/show.html.twig', [
             'mix' => $mix
         ]);
+    }
+
+    #[Route('mix/{id}/vote', name: 'app_mix_vote', methods: ['POST'])]
+    public function vote(VinylMix $mix, Request $request, EntityManagerInterface $entityManager): Response
+    {
+//        dd($requestStack->getCurrentRequest());
+        $direction = $request->get('direction', 'up');
+
+        if ($direction === 'up') {
+            $mix->upVotes();
+        } else {
+            $mix->downVotes();
+        }
+
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Vote counted!');
+
+        return $this->redirectToRoute('app_mix_show', ['id' => $mix->getId()]);
     }
 }
